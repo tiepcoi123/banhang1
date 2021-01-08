@@ -45,18 +45,18 @@ class LoginController extends Controller
 
             if(Auth::attempt(['email' => $email, 'password' => $password])){
                 
-                return redirect('menu');
+                return redirect()->route('dashboard');
             }
-
             else{
-
                 Session::flash('error','Email hoặc mật khẩu không đúng !');
                 return redirect('login');
             }
         }
     }
+
     public function logout()
-    {
-        return view('login');
+    {   
+        Auth::logout();
+        return redirect('login');
     }
 }

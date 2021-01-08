@@ -13,21 +13,53 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('home', function () { return view('layout.dashboard');});
-Route::get('welcome', function () { return view('welcome');});   
-Route::get('/', function () { return view('welcome');});
-Route::get('rules','App\Http\Controllers\RegisterController@rules');
-   
+// Route::get('home', function () { return view('layout.dashboard');});
+// Route::get('welcome', function () { return view('welcome');});   
+// Route::get('/', function () { return view('welcome');});
+Route::get('rules','RegisterController@rules');
 
-//<<< dish menu >>>
-Route::get('menu','App\Http\Controllers\MenuDishController@list_menu')->middleware('logincheck');
-Route::get('create','App\Http\Controllers\MenuDishController@create')->middleware('logincheck');
+Route::group([
+    'middleware' => 'logincheck'
+], function () {
+    // Dashboard
+    Route::get('/', 'DashboardController@index')->name('dashboard');
+
+    // Route Chef
+    Route::group([
+        'prefix' => 'chef'
+    ], function () {
+        Route::get('/create','ChefController@create')->name('create_chef');
+        Route::post('/store','ChefController@store')->name('store_chef');
+        Route::get('/list','ChefController@list')->name('list_chef');
+        Route::get('/edit/{chef}','ChefController@edit')->name('edit_chef');
+        Route::put('/update/{chef}','ChefController@update')->name('update_chef');
+        Route::delete('/delete/{chef}','ChefController@delete')->name('delete_chef');
+    });
+
+    // Route dish
+    Route::group([
+        'prefix' => 'dish'
+    ],
+    function () {
+        Route::get('/menu','MenuDishController@list_menu')->name('list_dish');
+        Route::get('/create','MenuDishController@create')->name('create_dish');
+        Route::get('/edit/{dish}','MenuDishController@edit')->name('edit_dish');
+        Route::post('/store','MenuDishController@store')->name('store_dish');
+        Route::put('/update/{dish}','MenuDishController@update')->name('update_dish');
+        Route::delete('/delete/{dish}','MenuDishController@delete')->name('delete_dish');
+    });
+    
+});
 
 //----Login-----//
-Route::get('login','App\Http\Controllers\LoginController@login');
-Route::post('login','App\Http\Controllers\LoginController@postlogin');
+Route::get('login','LoginController@login');
+Route::post('login','LoginController@postlogin')->name('post_login');
+Route::get('logout','LoginController@logout');
+
 
 //----Register---//
-Route::get('register','App\Http\Controllers\RegisterController@register');
-Route::post('register','App\Http\Controllers\RegisterController@postRegister');
+Route::get('register','RegisterController@register');
+Route::post('register','RegisterController@postRegister');
+   
+
 
