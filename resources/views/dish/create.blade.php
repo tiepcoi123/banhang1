@@ -64,9 +64,18 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1">Đầu bếp nấu </label>
-                                        <select class="form-control" name="list_chef" id="exampleFormControlSelect1">
+                                        <select class="form-control" name="chef_id" id="exampleFormControlSelect1">
                                             <option value="">-- Chọn đầu bếp --</option>
                                             @foreach ($chef as $item)
+                                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect1">Danh mục chọn </label>
+                                        <select class="form-control multi_category" name="category_id[]" multiple="multiple">
+                                            {{-- <option value="">-- Chọn danh mục --</option> --}}
+                                            @foreach ($category as $item)
                                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
                                             @endforeach
                                         </select>
@@ -92,4 +101,12 @@
         </section>
         <!-- /.content -->
     </div>
+    <script>
+        $(document).ready(function(){
+            $('.multi_category').select2({
+                minimumResultsForSearch: -1,
+                placeholder: "Chọn danh mục",
+            });
+        })
+      </script>
 @endsection

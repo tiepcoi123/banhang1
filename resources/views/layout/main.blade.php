@@ -25,6 +25,19 @@
   <link rel="stylesheet" href="{{asset('plugins/daterangepicker/daterangepicker.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset('plugins/summernote/summernote-bs4.min.css') }}">
+  <!-- Select 2 -->
+  <link rel="stylesheet" href="{{asset('backend/css/select2.min.css')}}" type="text/css"/>
+  <!-- jQuery -->
+  <script src="{{asset('plugins/jquery/jquery.min.js') }}"></script>
+  <!-- jQuery UI 1.11.4 -->
+  <script src="{{asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+
+  <style>
+    .select2-container--default .select2-selection--multiple .select2-selection__choice {
+      background-color: #007bff !important;
+    }
+  </style>
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -46,10 +59,7 @@
     <!-- End Footer -->
 </div>
 
-<!-- jQuery -->
-<script src="{{asset('plugins/jquery/jquery.min.js') }}"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="{{asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button)
@@ -80,5 +90,7 @@
 <script src="{{asset('dist/js/demo.js') }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('dist/js/pages/dashboard.js') }}"></script>
+<!-- Select 2 JS -->
+<script src="{{asset('backend/js/select2.min.js') }}"></script>
 </body>
 </html>

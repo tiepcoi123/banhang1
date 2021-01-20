@@ -131,7 +131,7 @@
             </a>
         </li>
 
-        <li class="dropdown user user-menu">
+        <li class="dropdown user user-menu" style="top: 5px">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <img src="{{ asset('dist/img/avatar5.png') }}" class="user-image" alt="User Image">
             </a>
@@ -158,9 +158,6 @@
                         <!-- /.row -->
                     </div>
                 </div>
-            </ul>
-            <ul>
-                <button></button>
             </ul>
         </li>
     </ul>

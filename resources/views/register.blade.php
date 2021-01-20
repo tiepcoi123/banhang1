@@ -30,7 +30,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="reg-w3">
 <div class="w3layouts-main">
 	<h2>Đăng kí tài khoản</h2>
-		<form action="register" method="POST">
+		<form action="{{route('post_register')}}" method="POST">
 
             <?php //Hiển thị thông báo thành công?>
                 @if ( Session::has('success') )

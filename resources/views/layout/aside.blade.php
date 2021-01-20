@@ -94,6 +94,78 @@
                         </li>
                     </ul>
                 </li>
+
+                <li class="nav-item {{ $route == 'list_promotion' || $route == 'create_promotion' ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-child"></i>
+                        <p>
+                            Khuyển mại
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('list_promotion')}}" class="nav-link {{ $route == 'list_promotion' ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách khuyển mại</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('create_promotion')}}" class="nav-link {{ $route == 'create_promotion' ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Thêm mới khuyến mại</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                {{-- <li class="nav-item {{ $route == 'list_timekeep' || $route == 'edit_timekeep' ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-child"></i>
+                        <p>
+                            Chấm công
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('list_timekeep')}}" class="nav-link {{ $route == 'list_timekeep' ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách chấm công</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('create_promotion')}}" class="nav-link {{ $route == 'edit_timekeep' ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>sửa bảng chấm công</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li> --}}
+
+                <li class="nav-item {{ $route == 'list_category' || $route == 'create_category' ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-utensils"></i>
+                        <p>
+                            Category
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('list_category') }}" class="nav-link {{ $route == 'list_category' ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh mục</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('create_category') }}" class="nav-link {{ $route == 'create_category' ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Tạo danh mục</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

@@ -58,6 +58,7 @@
                                             <th>Tên món</th>
                                             <th>Giá món</th>
                                             <th>Đầu bếp thực hiện</th>
+                                            <th>thuộc loại</th>
                                             <th>Ngày tạo</th>
                                             <th>Hành động</th>
                                         </tr>
@@ -68,12 +69,19 @@
                                                 <td>{{ $item->id }}</td>
                                                 <td>{{ $item->name_dish }}</td>
                                                 <td>{{ $item->price }}</td>
-                                                <td>{{ $item->chef_id != null ? get_name_chef_by_id($item->chef_id) : null }}</td>
+                                                <td>{{ $item->chef_id != null ? get_name_chef_by_id($item->chef_id) : null }}
+                                                </td>
+                                                <td>
+                                                    @foreach ($item->category as $cate)
+                                                        <span>{{ $cate->name }}</span><br>
+                                                    @endforeach
+                                                </td>
                                                 <td>{{ $item->created_at }}</td>
                                                 <td>
                                                     <a href="{{ route('edit_dish', ['dish' => $item]) }}"
                                                         class="btn btn-warning btn_edit">Sửa</a>
-                                                    <form action="{{ route('delete_dish', ['dish' => $item]) }}" method="post">
+                                                    <form action="{{ route('delete_dish', ['dish' => $item]) }}"
+                                                        method="post">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger">Xóa</button>
@@ -101,4 +109,5 @@
         float: left;
         margin-right: 10px;
     }
+
 </style>
