@@ -35,6 +35,7 @@
                             <form id="quickForm" action="{{ route('update_dish', ['dish' => $dish ]) }}" method="Post">
                                 @method('put')
                                 @csrf
+                                @include('partials.errors')
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Tên món</label>
@@ -61,8 +62,10 @@
                                         <label for="exampleFormControlSelect1">Danh mục chọn </label>
                                         <select class="form-control multi_category" name="category_id[]" multiple="multiple">
                                             {{-- <option value="">-- Chọn danh mục --</option> --}}
+                                            @foreach ($dish->category as $value)
                                             @foreach ($category as $item)
-                                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                <option value="{{ $item->id }}" {{ $value->id == $item->id ? 'selected' : ''}} >{{ $item->name }}</option>
+                                            @endforeach
                                             @endforeach
                                         </select>
                                     </div>
@@ -90,7 +93,6 @@
     <script>
         $(document).ready(function(){
             $('.multi_category').select2({
-                minimumResultsForSearch: -1,
                 placeholder: "Chọn danh mục",
             });
         })

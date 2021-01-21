@@ -16,6 +16,12 @@ class Dish extends Model
     protected $fillable =[
         'name_dish',
         'price',
-        'chef_id'
+        'chef_id',
+        'category_id'
     ];
+
+    public function category()
+    {
+        return $this->belongstoMany('App\Models\Category', 'category_dish','dish_id','category_id');
+    }
 }

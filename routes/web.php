@@ -22,7 +22,7 @@ Route::group([
     'middleware' => 'logincheck'
 ], function () {
     // Dashboard
-    Route::get('/', 'DashboardController@index')->name('dashboard');
+    Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 
     // Route Chef
     Route::group([
@@ -48,7 +48,28 @@ Route::group([
         Route::put('/update/{dish}','MenuDishController@update')->name('update_dish');
         Route::delete('/delete/{dish}','MenuDishController@delete')->name('delete_dish');
     });
+
+    Route::group([
+        'prefix' => 'promotion'
+    ], function () {
+        Route::get('/list', 'PromotionController@index')->name('list_promotion');
+        Route::get('/create', 'PromotionController@create')->name('create_promotion');
+        Route::post('/store', 'PromotionController@store')->name('store_promotion');
+        Route::get('/edit/{promotion}', 'PromotionController@edit')->name('edit_promotion');
+        Route::put('/update/{promotion}', 'PromotionController@update')->name('update_promotion');
+        Route::delete('/delete/{promotion}', 'PromotionController@delete')->name('delete_promotion');
+    });
     
+    Route::group([
+        'prefix' => 'category'
+    ], function () {
+        Route::get('/list','CategoryController@index')->name('list_category');
+        Route::get('/crete','CategoryController@create')->name('create_category');
+        Route::post('/store','CategoryController@store')->name('store_category');
+        Route::get('/edit/{category}','CategoryController@edit')->name('edit_category');
+        Route::put('/update/{category}','CategoryController@update')->name('update_category');
+        Route::delete('/delete/{category}','CategoryController@delete')->name('delete_category');
+    });
 });
 
 //----Login-----//
@@ -59,7 +80,11 @@ Route::get('logout','LoginController@logout');
 
 //----Register---//
 Route::get('register','RegisterController@register');
-Route::post('register','RegisterController@postRegister');
-   
+Route::post('register','RegisterController@postRegister')->name('post_register');
+
+
+Route::get('/', function () {
+    return view('wecome');
+});
 
 

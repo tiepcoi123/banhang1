@@ -19,7 +19,7 @@ class Chef extends Model
         'phone',
     ];
     
-    public function Dish()
+    public function dish()
     {
         return $this->belongstoMany('App\Models\Dish','chef_id','id');
     }

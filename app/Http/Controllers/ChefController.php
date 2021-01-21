@@ -34,7 +34,7 @@ class ChefController extends Controller
         }
 
         $chefData = Chef::create([
-            'name' => $request->name,
+            'name'      => $request->name,
             'birth'     => $request->birth,
             'phone'     => $request->phone,
         ]);
