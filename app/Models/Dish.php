@@ -24,4 +24,9 @@ class Dish extends Model
     {
         return $this->belongstoMany('App\Models\Category', 'category_dish','dish_id','category_id');
     }
+
+    public function value()
+    {
+        return $this->belongstoMany('App\Models\Value', 'value_dish','dish_id','value_id');
+    }
 }

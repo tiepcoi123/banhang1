@@ -58,6 +58,7 @@ Route::group([
         Route::get('/edit/{promotion}', 'PromotionController@edit')->name('edit_promotion');
         Route::put('/update/{promotion}', 'PromotionController@update')->name('update_promotion');
         Route::delete('/delete/{promotion}', 'PromotionController@delete')->name('delete_promotion');
+        Route::get('/generate-code', 'PromotionController@generateCode')->name('generate_code');
     });
     
     Route::group([
@@ -69,6 +70,23 @@ Route::group([
         Route::get('/edit/{category}','CategoryController@edit')->name('edit_category');
         Route::put('/update/{category}','CategoryController@update')->name('update_category');
         Route::delete('/delete/{category}','CategoryController@delete')->name('delete_category');
+    });
+
+    Route::group([
+        'prefix' => 'attribute'
+    ], function () {
+        Route::get('/list', 'AttributeController@list')->name('list_attribute');
+        Route::get('/create', 'AttributeController@create')->name('create_attribute');
+        Route::post('/store', 'AttributeController@store')->name('store_attribute');
+        Route::get('/edit/{attribute}', 'AttributeController@edit')->name('edit_attribute');
+        Route::put('/update/{attribute}', 'AttributeController@update')->name('update_attribute');
+        Route::delete('/delete/{attribute}', 'AttributeController@delete')->name('delete_attribute');
+    });
+
+    Route::group([
+        'prefix' => 'timekepping'
+    ], function () {
+        Route::get('/list', 'TimekeepController@timekeep')->name('list_timekeep');
     });
 });
 

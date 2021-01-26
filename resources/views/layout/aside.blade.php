@@ -164,7 +164,56 @@
                             </a>
                         </li>
                     </ul>
+                </li> 
+
+                <li class="nav-item ">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-utensils"></i>
+                        <p>
+                            Timekeeping
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('list_timekeep') }}" class="nav-link ">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh mục</p>
+                            </a>
+                        </li>
+                        {{-- <li class="nav-item">
+                            <a href="{{ route('create_timekeep') }}" class="nav-link ">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Tạo danh mục</p>
+                            </a>
+                        </li> --}}
+                    </ul>
                 </li>
+
+                
+                <li class="nav-item {{ $route == 'list_attribute' || $route == 'create_attribute' ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-utensils"></i>
+                        <p>
+                            Attribute
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('list_attribute') }}" class="nav-link {{ $route == 'list_attribute' ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('create_attribute') }}" class="nav-link {{ $route == 'create_attribute' ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Tạo giá trị</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li> 
 
             </ul>
         </nav>

@@ -81,12 +81,12 @@
         </section>
         <!-- /.content -->
     </div>
+    <script>
+        $(document).ready(function(){
+            $('.multi_category').select2({
+                minimumResultsForSearch: -1,
+                placeholder: "Chọn danh mục",
+            });
+        })
+    </script>
 @endsection
-<script>
-    $(document).ready(function(){
-        $('.multi_category').select2({
-            minimumResultsForSearch: -1,
-            placeholder: "Chọn danh mục",
-        });
-    })
-</script>
