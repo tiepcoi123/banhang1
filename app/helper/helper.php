@@ -1,5 +1,5 @@
 <?php
-use App\Models\{Chef,Dish,Category};
+use App\Models\{Chef,Dish,Category,Attribute};
 
 if (!function_exists('get_name_chef_by_id')) {
     function get_name_chef_by_id($id_chef)
@@ -10,6 +10,7 @@ if (!function_exists('get_name_chef_by_id')) {
     }
 
 }
+
 
 if (!function_exists('get_name_dish_by_id')) {
    function get_name_dish_by_id($id_dish)
@@ -33,3 +34,21 @@ if (!function_exists('get_category_by_dish_id')) {
    }
 }
 
+if (!function_exists('get_name_attribute_by_id')) {
+   function get_name_attribute_by_id($id_attribute)
+   {
+      $data = Attribute::where('id', $id_attribute)->first();
+      return $data['name'];
+   }
+}
+
+if (!function_exists('get_name_dish_by_id')) {
+   function get_name_dish_by_id($id_dish)
+   {
+      $data = dish::where('id', $id_dish)->first();
+
+      return $data['name_dish'];
+   }
+
+
+}

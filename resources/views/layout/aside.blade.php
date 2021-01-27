@@ -209,6 +209,30 @@
                         <li class="nav-item">
                             <a href="{{ route('create_attribute') }}" class="nav-link {{ $route == 'create_attribute' ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
+                                <p>Tạo thuộc tính</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li> 
+
+                <li class="nav-item {{ $route == 'list_value' || $route == 'create_value' ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-utensils"></i>
+                        <p>
+                            Value
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('list_value') }}" class="nav-link {{ $route == 'list_value' ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>List value</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('create_value') }}" class="nav-link {{ $route == 'create_value' ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
                                 <p>Tạo giá trị</p>
                             </a>
                         </li>

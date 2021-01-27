@@ -46,7 +46,7 @@ Route::group([
         Route::get('/edit/{dish}','MenuDishController@edit')->name('edit_dish');
         Route::post('/store','MenuDishController@store')->name('store_dish');
         Route::put('/update/{dish}','MenuDishController@update')->name('update_dish');
-        Route::delete('/delete/{dish}','MenuDishController@delete')->name('delete_dish');
+        Route::delete('/delete/{id}','MenuDishController@delete')->name('delete_dish');
     });
 
     Route::group([
@@ -82,6 +82,29 @@ Route::group([
         Route::put('/update/{attribute}', 'AttributeController@update')->name('update_attribute');
         Route::delete('/delete/{attribute}', 'AttributeController@delete')->name('delete_attribute');
     });
+
+    Route::group([
+        'prefix' => 'value'
+    ], function () {
+        Route::get('/list', 'ValueController@list')->name('list_value');
+        Route::get('/create', 'ValueController@create')->name('create_value');
+        Route::post('/store', 'ValueController@store')->name('store_value');
+        Route::get('/edit/{value}', 'ValueController@edit')->name('edit_value');
+        Route::put('/update/{value}', 'ValueController@update')->name('update_value');
+        Route::delete('/delete/{value}', 'ValueController@delete')->name('delete_value');
+    });
+
+    Route::group([
+        'prefix' => 'variant'
+    ], function () {
+        Route::get('/list', 'VariantController@list')->name('list_variant');
+        Route::get('/create', 'VariantController@create')->name('create_variant');
+        Route::post('/store', 'VariantController@store')->name('store_variant');
+        Route::get('/edit/{variant}', 'VariantController@edit')->name('edit_variant');
+        Route::put('/update/{variant}', 'VariantController@update')->name('update_variant');
+        Route::delete('/delete/{variant}', 'VariantController@delete')->name('delete_variant');
+    });
+
 
     Route::group([
         'prefix' => 'timekepping'

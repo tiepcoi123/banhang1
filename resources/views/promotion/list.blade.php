@@ -7,12 +7,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Danh sách món ăn</h1>
+                        <h1>Danh sách KM</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                            <li class="breadcrumb-item active">Danh sách món ăn</li>
+                            <li class="breadcrumb-item active">Danh sách KM</li>
                         </ol>
                     </div>
                 </div>
@@ -55,10 +55,13 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Tên món</th>
-                                            <th>Giá món</th>
-                                            <th>Đầu bếp thực hiện</th>
-                                            <th>thuộc loại</th>
+                                            <th>Tên khuyến mại </th>
+                                            <th>Loại khuyến mại</th>
+                                            <th>Mã khuyến mại </th>
+                                            <th>Số lượt sử dụng </th>
+                                            <th>Thời gian bắt đầu </th>
+                                            <th>Thời gian kết thúc </th>
+                                            <th>Giá khuyến mại</th>
                                             <th>Ngày tạo</th>
                                             <th>Hành động</th>
                                         </tr>
@@ -67,26 +70,22 @@
                                         @foreach ($getData as $item)
                                             <tr>
                                                 <td>{{ $item->id }}</td>
-                                                <td>{{ $item->name_dish }}</td>
-                                                <td>{{ $item->price }}</td>
-                                                <td>{{ $item->chef_id != null ? get_name_chef_by_id($item->chef_id) : null }}
-                                                </td>
+                                                <td>{{ $item->name }}</td>
+                                                <td>{{ $item->type == 0 ? 'Khuyến mại có mã' : 'Khuyến mại thường' }}</td>
+                                                <td>{{ $item->code}}</td>
+                                                <td>{{ $item->count_apply}}</td>
+                                                <td>{{ $item->start_date}}</td>
+                                                <td>{{ $item->end_date}}</td>
+                                                <td>{{ $item->discount}}</td>
+                                                <td>{{ date('d-m-Y H:i', strtotime($item->created_at))  }}</td>
                                                 <td>
-                                                    @foreach ($item->category as $cate)
-                                                        <span>{{ $cate->name }}</span><br>
-                                                    @endforeach
-                                                </td>
-                                                <td>{{ $item->created_at }}</td>
-                                                <td>
-                                                    <a href="{{ route('list_variant') }}" class="btn btn-primary"
-                                                        title="Biến thể"><i class="fas fa-list"></i></a>
-                                                    <a href="{{ route('edit_dish', ['dish' => $item]) }}"
-                                                        class="btn btn-warning btn_edit" title="Sửa"><i
-                                                            class="fas fa-edit"></i>
-                                                    </a>
-                                                    <button type="submit" class="btn btn-danger btn-delete-dish"
-                                                        data-id="{{ $item->id }}" title="Xóa"><i class="fas fa-trash"></i>
-                                                    </button>
+                                                    <a href="{{ route('edit_promotion', ['promotion' => $item]) }}"
+                                                        class="btn btn-warning btn_edit">Sửa</a>
+                                                    <form action="{{ route('delete_promotion', ['promotion' => $item]) }}" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger">Xóa</button>
+                                                    </form>
                                                 </td>
                                         @endforeach
                                     </tbody>
@@ -95,58 +94,19 @@
                                     {{ $getData->links('layout.pagination') }}
                                 </div>
                             </div>
+                            <!-- /.card-body -->
                         </div>
+                        <!-- /.card -->
                     </div>
                 </div>
-            </div>
+            </div><!-- /.container-fluid -->
         </section>
+        <!-- /.content -->
     </div>
-    <script>
-        $(document).ready(function() {
-            $('.btn-delete-dish').click(function() {
-                var id = $(this).attr('data-id');
-
-                Swal.fire({
-                    title: 'Bạn có chắc chắn thực hiện hành động',
-                    text: "Hành động của bạn sẽ không thể hoàn tác",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Có, xóa bản ghi!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            url: "/dish/delete/" + id,
-                            method: "POST",
-                            data: {
-                                _token: "{{ csrf_token() }}",
-                                _method: "DELETE"
-                            },
-                            success: function(response) {
-                                Swal.fire(
-                                    'Deleted!',
-                                    'Your file has been deleted.',
-                                    'success'
-                                ).then((result2) => {
-                                    if (result2.value) {
-                                        window.location
-                                    .reload(); // hàm load lại trang của js
-                                    }
-                                });
-                            }
-                        });
-                    }
-                })
-            })
-        });
-
-    </script>
 @endsection
 <style>
     .btn_edit {
         float: left;
         margin-right: 10px;
     }
-
 </style>

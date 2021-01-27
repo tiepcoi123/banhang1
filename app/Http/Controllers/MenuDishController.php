@@ -114,10 +114,10 @@ class MenuDishController extends Controller
         return redirect()->route('list_dish');
     }
 
-    public function delete(Dish $dish)
+    public function delete($id)
     {
+        $dish = Dish::find($id);
         $dish->delete();
-        Session::flash('success','Xóa món thành công');
-        return redirect()->route('list_dish');
+        return response()->json([], 201);
     }
 }

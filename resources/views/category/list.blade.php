@@ -55,10 +55,7 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Tên món</th>
-                                            <th>Giá món</th>
-                                            <th>Đầu bếp thực hiện</th>
-                                            <th>thuộc loại</th>
+                                            <th>Category - name</th>
                                             <th>Ngày tạo</th>
                                             <th>Hành động</th>
                                         </tr>
@@ -67,26 +64,17 @@
                                         @foreach ($getData as $item)
                                             <tr>
                                                 <td>{{ $item->id }}</td>
-                                                <td>{{ $item->name_dish }}</td>
-                                                <td>{{ $item->price }}</td>
-                                                <td>{{ $item->chef_id != null ? get_name_chef_by_id($item->chef_id) : null }}
-                                                </td>
-                                                <td>
-                                                    @foreach ($item->category as $cate)
-                                                        <span>{{ $cate->name }}</span><br>
-                                                    @endforeach
-                                                </td>
+                                                <td>{{ $item->name }}</td>
+                                                {{-- <td>{{ $item->category_id != null ? get_name_category_by_id($item->category_id) : null }}</td> --}}
                                                 <td>{{ $item->created_at }}</td>
                                                 <td>
-                                                    <a href="{{ route('list_variant') }}" class="btn btn-primary"
-                                                        title="Biến thể"><i class="fas fa-list"></i></a>
-                                                    <a href="{{ route('edit_dish', ['dish' => $item]) }}"
-                                                        class="btn btn-warning btn_edit" title="Sửa"><i
-                                                            class="fas fa-edit"></i>
-                                                    </a>
-                                                    <button type="submit" class="btn btn-danger btn-delete-dish"
-                                                        data-id="{{ $item->id }}" title="Xóa"><i class="fas fa-trash"></i>
-                                                    </button>
+                                                    <a href="{{ route('edit_category', ['category' => $item]) }}"
+                                                        class="btn btn-warning btn_edit">Sửa</a>
+                                                    <form action="{{ route('delete_category', ['category' => $item]) }}" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger">Xóa</button>
+                                                    </form>
                                                 </td>
                                         @endforeach
                                     </tbody>
@@ -95,58 +83,19 @@
                                     {{ $getData->links('layout.pagination') }}
                                 </div>
                             </div>
+                            <!-- /.card-body -->
                         </div>
+                        <!-- /.card -->
                     </div>
                 </div>
-            </div>
+            </div><!-- /.container-fluid -->
         </section>
+        <!-- /.content -->
     </div>
-    <script>
-        $(document).ready(function() {
-            $('.btn-delete-dish').click(function() {
-                var id = $(this).attr('data-id');
-
-                Swal.fire({
-                    title: 'Bạn có chắc chắn thực hiện hành động',
-                    text: "Hành động của bạn sẽ không thể hoàn tác",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Có, xóa bản ghi!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            url: "/dish/delete/" + id,
-                            method: "POST",
-                            data: {
-                                _token: "{{ csrf_token() }}",
-                                _method: "DELETE"
-                            },
-                            success: function(response) {
-                                Swal.fire(
-                                    'Deleted!',
-                                    'Your file has been deleted.',
-                                    'success'
-                                ).then((result2) => {
-                                    if (result2.value) {
-                                        window.location
-                                    .reload(); // hàm load lại trang của js
-                                    }
-                                });
-                            }
-                        });
-                    }
-                })
-            })
-        });
-
-    </script>
 @endsection
 <style>
     .btn_edit {
         float: left;
         margin-right: 10px;
     }
-
 </style>

@@ -29,4 +29,9 @@ class Dish extends Model
     {
         return $this->belongstoMany('App\Models\Value', 'value_dish','dish_id','value_id');
     }
+
+    public function variant()
+    {
+        return $this->belongstoMany('App\Models\Variant','id','dish_id');
+    }
 }
