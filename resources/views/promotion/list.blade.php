@@ -72,20 +72,19 @@
                                                 <td>{{ $item->id }}</td>
                                                 <td>{{ $item->name }}</td>
                                                 <td>{{ $item->type == 0 ? 'Khuyến mại có mã' : 'Khuyến mại thường' }}</td>
-                                                <td>{{ $item->code}}</td>
-                                                <td>{{ $item->count_apply}}</td>
-                                                <td>{{ $item->start_date}}</td>
-                                                <td>{{ $item->end_date}}</td>
-                                                <td>{{ $item->discount}}</td>
-                                                <td>{{ date('d-m-Y H:i', strtotime($item->created_at))  }}</td>
+                                                <td>{{ $item->code }}</td>
+                                                <td>{{ $item->count_apply }}</td>
+                                                <td>{{ $item->start_date }}</td>
+                                                <td>{{ $item->end_date }}</td>
+                                                <td>{{ $item->discount }}</td>
+                                                <td>{{ date('d-m-Y H:i', strtotime($item->created_at)) }}</td>
                                                 <td>
                                                     <a href="{{ route('edit_promotion', ['promotion' => $item]) }}"
-                                                        class="btn btn-warning btn_edit">Sửa</a>
-                                                    <form action="{{ route('delete_promotion', ['promotion' => $item]) }}" method="post">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger">Xóa</button>
-                                                    </form>
+                                                        class="btn btn-warning btn_edit" title="Sửa"><i class="fas fa-edit"></i></a>
+
+                                                    <button type="submit" class="btn btn-danger btn-delete-promotion"
+                                                        data-id = "{{$item->id}}" title="Xóa"><i class="fas fa-trash"></i>
+                                                    </button>
                                                 </td>
                                         @endforeach
                                     </tbody>
@@ -103,10 +102,50 @@
         </section>
         <!-- /.content -->
     </div>
+    <script>
+        $(document).ready(function() {
+            $('.btn-delete-promotion').click(function() {
+                var id = $(this).attr('data-id');
+
+                Swal.fire({
+                    title: 'Bạn có chắc chắn thực hiện hành động',
+                    text: "Hành động của bạn sẽ không thể hoàn tác",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Có, xóa bản ghi!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: "/promotion/delete/" + id,
+                            method: "POST",
+                            data: {
+                                _token: "{{ csrf_token() }}",
+                                _method: "DELETE"
+                            },
+                            success: function(response) {
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                ).then((result2) => {
+                                    if (result2.value) {
+                                        window.location.reload(); // hàm load lại trang của js
+                                    }
+                                });
+                            }
+                        });
+                    }
+                })
+            })
+        });
+    </script>
 @endsection
 <style>
     .btn_edit {
         float: left;
         margin-right: 10px;
     }
+
 </style>

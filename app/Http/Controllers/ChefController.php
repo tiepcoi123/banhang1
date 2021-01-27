@@ -52,10 +52,11 @@ class ChefController extends Controller
         return view('chef.list', compact('data'));
     }
 
-    public function delete(Chef $chef)
+    public function delete($id)
     {
+        $chef = Chef::find($id);
         $chef->delete();
-        return redirect()->back();
+        return response()->json([], 204);
     }
 
     public function edit(Chef $chef)

@@ -130,8 +130,7 @@
                                     'success'
                                 ).then((result2) => {
                                     if (result2.value) {
-                                        window.location
-                                    .reload(); // hàm load lại trang của js
+                                        window.location.reload(); // hàm load lại trang của js
                                     }
                                 });
                             }

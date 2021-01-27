@@ -65,16 +65,18 @@
                                             <tr>
                                                 <td>{{ $item->id }}</td>
                                                 <td>{{ $item->name }}</td>
-                                                {{-- <td>{{ $item->category_id != null ? get_name_category_by_id($item->category_id) : null }}</td> --}}
+                                                {{-- <td>
+                                                    {{ $item->category_id != null ? get_name_category_by_id($item->category_id) : null }}
+                                                </td> --}}
                                                 <td>{{ $item->created_at }}</td>
                                                 <td>
                                                     <a href="{{ route('edit_category', ['category' => $item]) }}"
-                                                        class="btn btn-warning btn_edit">Sửa</a>
-                                                    <form action="{{ route('delete_category', ['category' => $item]) }}" method="post">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger">Xóa</button>
-                                                    </form>
+                                                        class="btn btn-warning btn_edit" type="Sửa" ><i style="color: #FFF" class="fas fa-edit"></i></a>
+
+                                                    <button type="submit" class="btn btn-danger btn-delete-category"
+                                                        data-id="{{ $item->id }}" title="Xóa"><i class="fas fa-trash"></i>
+                                                    </button>
+
                                                 </td>
                                         @endforeach
                                     </tbody>
@@ -92,10 +94,52 @@
         </section>
         <!-- /.content -->
     </div>
+    <script>
+        $(document).ready(function() {
+            $('.btn-delete-category').click(function() {
+                var id = $(this).attr('data-id');
+
+                Swal.fire({
+                    title: 'Bạn có chắc chắn thực hiện hành động',
+                    text: "Hành động của bạn sẽ không thể hoàn tác",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Có, xóa bản ghi!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: "/category/delete/" + id,
+                            method: "POST",
+                            data: {
+                                _token: "{{ csrf_token() }}",
+                                _method: "DELETE"
+                            },
+                            success: function(response) {
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                ).then((result2) => {
+                                    if (result2.value) {
+                                        window.location
+                                    .reload(); // hàm load lại trang của js
+                                    }
+                                });
+                            }
+                        });
+                    }
+                })
+            })
+        });
+
+    </script>
 @endsection
 <style>
     .btn_edit {
         float: left;
         margin-right: 10px;
     }
+
 </style>

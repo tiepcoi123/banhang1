@@ -6,7 +6,10 @@ if (!function_exists('get_name_chef_by_id')) {
     {
        $data = Chef::where('id', $id_chef)->first();
 
-       return $data['name'];
+       if($data){
+         return $data['name'];
+      }
+       return null;
     }
 
 }

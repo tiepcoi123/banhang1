@@ -18,9 +18,9 @@ class Value extends Model
         
     ];
 
-    public function varriant()
+    public function variant()
     {
-        return $this->belongstoMany('App\Models\Varriant', 'varriant_value','varriant_id','value_id');
+        return $this->belongstoMany('App\Models\variant', 'variant_value','variant_id','value_id');
     }
 
     public function dish()

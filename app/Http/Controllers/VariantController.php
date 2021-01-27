@@ -9,7 +9,7 @@ class VariantController extends Controller
 {
     public function list( Variant $variant)
     {
-        $variant = Variant::later()->paginate(2);
+        $variant = Variant::latest()->paginate(2);
         return view('variant.list', compact('variant'));
     }
 

@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Attribute;
 use Validator;
+use Session;
 
 class AttributeController extends Controller
 {
     public function list(Attribute $attribute)
     {
-        $attribute = Attribute::latest()->paginate(2);
+        $attribute = Attribute::latest()->paginate(5);
 
         return view('attribute.list', compact('attribute'));
     }
@@ -23,10 +24,11 @@ class AttributeController extends Controller
     public function store(Attribute $attribute, Request $request)
     {
          $validator = Validator::make($request->all(),[
-            'name' => 'required',
+            'name' => 'required|unique:attribute,name',
          ],
          [
-             'name.required' => 'Không có tên thì biết đâu mà dùng'
+            'name.required' => 'Không có tên thì biết đâu mà dùng',
+            'name.unique'   => 'Trùng tên rồi bro'
          ]
         );
 
@@ -37,7 +39,7 @@ class AttributeController extends Controller
         $attribute = Attribute::create([
             'name' => $request->name
         ]);
-
+        Session::flash('success', 'Thêm mới thành công');
         return redirect()->route('list_attribute');
     }
 
@@ -52,14 +54,14 @@ class AttributeController extends Controller
             'name'=> $request->name
         ]);
 
-        session()->flash('success', 'update thành công');
+        Session::flash('success', 'update thành công');
         return redirect()-> route('list.attribute');
     }
 
-    public function delete(Attribute $attribute)
+    public function delete($id)
     {
+        $attribute = Attribute::find($id);
         $attribute ->delete();
-        Session::flash('success','Xóa thành công');
-        return redirect()-> route('list.attribute');
+        return response()->json([], 204);
     }
 }

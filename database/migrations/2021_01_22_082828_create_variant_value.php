@@ -14,7 +14,7 @@ class CreateVariantValue extends Migration
     public function up()
     {
         Schema::create('variant_value', function (Blueprint $table) {
-            $table->integer('varriant');
+            $table->integer('variant');
             $table->integer('value_id');
             $table->timestamps();
         });

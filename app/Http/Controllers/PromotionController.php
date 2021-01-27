@@ -16,7 +16,7 @@ class PromotionController extends Controller
      */
     public function index()
     {
-        $getData = Promotion::latest()->paginate(2);
+        $getData = Promotion::latest()->paginate(10);
 
         return view('promotion.list', compact('getData'));
     }
@@ -138,9 +138,11 @@ class PromotionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Promotion $promotion)
+    public function destroy($id)
     {
+        $promotion = Promotion::find($id);
         $promotion->delete();
+        return response()->json([], 204);
     }
 
     /**

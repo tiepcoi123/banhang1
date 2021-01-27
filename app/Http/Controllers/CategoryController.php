@@ -61,10 +61,10 @@ class CategoryController extends Controller
         Session::flash('success', 'Chỉnh sửa thành công' );
     }
 
-    public function delete(Category $category)
+    public function delete($id)
     {
+        $category = Category::find($id);
         $category->delete();
-        Session::flash('success','Xóa thành công');
-        return redirect()->route('list_category');
+       return response()->json([], 204);
     }
 }

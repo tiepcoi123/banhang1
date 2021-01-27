@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Varriant_value extends Model
+class variant_value extends Model
 {
     use HasFactory;
 
-    public function varriant()
+    public function variant()
     {
-        return $this->belongstoMany('App\Models\Varriant','id','varriant_id');
+        return $this->belongstoMany('App\Models\variant','id','variant_id');
     }
 }
