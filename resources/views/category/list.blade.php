@@ -55,34 +55,19 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Category - name</th>
+                                            <th>Danh mục</th>
                                             <th>Ngày tạo</th>
                                             <th>Hành động</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($getData as $item)
-                                            <tr>
-                                                <td>{{ $item->id }}</td>
-                                                <td>{{ $item->name }}</td>
-                                                {{-- <td>
-                                                    {{ $item->category_id != null ? get_name_category_by_id($item->category_id) : null }}
-                                                </td> --}}
-                                                <td>{{ $item->created_at }}</td>
-                                                <td>
-                                                    <a href="{{ route('edit_category', ['category' => $item]) }}"
-                                                        class="btn btn-warning btn_edit" type="Sửa" ><i style="color: #FFF" class="fas fa-edit"></i></a>
-
-                                                    <button type="submit" class="btn btn-danger btn-delete-category"
-                                                        data-id="{{ $item->id }}" title="Xóa"><i class="fas fa-trash"></i>
-                                                    </button>
-
-                                                </td>
-                                        @endforeach
+                                        @php
+                                            getCategory($getData, 0, '')
+                                        @endphp
                                     </tbody>
                                 </table>
                                 <div class="card-footer clearfix">
-                                    {{ $getData->links('layout.pagination') }}
+                                    {{-- {{ $getData->links('layout.pagination') }} --}}
                                 </div>
                             </div>
                             <!-- /.card-body -->

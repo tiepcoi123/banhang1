@@ -52,6 +52,38 @@ if (!function_exists('get_name_dish_by_id')) {
 
       return $data['name_dish'];
    }
+}
 
+/**
+ * Hàm đệ quy category
+ */
+if (!function_exists('getCategory')) {
+   function getCategory($category, $parent, $shift, $is_select = false)
+   {
+      foreach ($category as $row) {
+         if ($row->parent_id == $parent) {
+            if ($is_select) {
+               echo "<option value='$row->id'>" . $shift . $row->name . "</option>";
+               getCategory($category, $row->id, $shift . '---', true);
+            }
+            else{
+               echo "<tr>
+                        <td>".$row->id." </td>
+                        <td >". $shift .' '. $row->name ."</td>
+                        <td>". $row->created_at ."</td>
+                        <td>
+                           <a href=". route('edit_category', ['category' => $row]) ."
+                              class='btn btn-warning btn_edit' type='Sửa' ><i style='color: #FFF' class='fas fa-edit'></i></a>
 
+                           <button type='submit' class='btn btn-danger btn-delete-category'
+                              data-id='. $row->id .' title='Xóa'><i class='fas fa-trash'></i>
+                           </button>
+
+                        </td>
+                  </tr>";
+                  getCategory($category, $row->id, $shift . '---');
+            }
+         }
+      }
+   }
 }

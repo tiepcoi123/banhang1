@@ -7,8 +7,9 @@ use App\Models\{Variant};
 
 class VariantController extends Controller
 {
-    public function list( Variant $variant)
+    public function list( Variant $variant , Dish $dish)
     {
+        $dish = Dish::all();
         $variant = Variant::latest()->paginate(2);
         return view('variant.list', compact('variant'));
     }
