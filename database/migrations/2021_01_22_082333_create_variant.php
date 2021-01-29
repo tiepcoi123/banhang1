@@ -14,10 +14,10 @@ class CreateVariant extends Migration
     public function up()
     {
         Schema::create('variant', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->integer('dish_id');
-            $table->integer('price');
-            $table->integer('quantity');
+            $table->decimal('price', 15, 2)->default(0);
+            $table->integer('quantity')->default(0);
             $table->timestamps();
         });
     }

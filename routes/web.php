@@ -97,7 +97,7 @@ Route::group([
     Route::group([
         'prefix' => 'variant'
     ], function () {
-        Route::get('/list', 'VariantController@list')->name('list_variant');
+        Route::get('/list/{dish}', 'VariantController@list')->name('list_variant');
         Route::get('/create', 'VariantController@create')->name('create_variant');
         Route::post('/store', 'VariantController@store')->name('store_variant');
         Route::get('/edit/{variant}', 'VariantController@edit')->name('edit_variant');

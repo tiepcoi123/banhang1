@@ -5,12 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class variant_value extends Model
+class Variant_value extends Model
 {
     use HasFactory;
 
-    public function variant()
-    {
-        return $this->belongstoMany('App\Models\Variant','id','variant_id');
-    }
+    protected $table = 'Variant_value';
 }

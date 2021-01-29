@@ -32,6 +32,6 @@ class Dish extends Model
 
     public function variant()
     {
-        return $this->belongstoMany('App\Models\Variant','id','dish_id');
+        return $this->hasMany('App\Models\Variant','dish_id','id');
     }
 }

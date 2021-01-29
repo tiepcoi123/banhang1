@@ -18,13 +18,13 @@ class Variant extends Model
         'quantity',
     ];
 
-    public function dish()
-    {
-        return $this->belongstoMany('App\Models\Dish','');
-    }
-    
     public function value()
     {
-        return $this->belongstoMany('App\Models\Value', 'variant_value','variant_id','value_id');
+        return $this->belongsToMany('App\Models\Value', 'variant_value', 'value_id', 'variant_id');
+    }
+
+    public function dish()
+    {
+        return $this->belongsTo('App\Models\Dish', 'dish_id', 'id');
     }
 }

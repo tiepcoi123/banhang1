@@ -15,16 +15,15 @@ class Value extends Model
         'id',
         'name',
         'attribute_id',
-        
     ];
 
-    public function variant()
+    public function attribute()
     {
-        return $this->belongstoMany('App\Models\variant', 'variant_value','variant_id','value_id');
+        return $this->belongsTo('App\Models\Attribute', 'attribute_id', 'id');
     }
 
     public function dish()
     {
-        return $this->belongstoMany('App\Models\Dish', 'value_dish','value_id','dish_id');
+        return $this->belongsToMany('App\Models\Dish', 'value_dish', 'value_id', 'dish_id');
     }
 }

@@ -78,7 +78,7 @@
                                                 </td>
                                                 <td>{{ $item->created_at }}</td>
                                                 <td>
-                                                    <a href="{{ route('list_variant') }}" class="btn btn-primary"
+                                                    <a href="{{ route('list_variant', ['dish' => $item]) }}" class="btn btn-primary"
                                                         title="Biến thể"><i class="fas fa-list"></i></a>
                                                     <a href="{{ route('edit_dish', ['dish' => $item]) }}"
                                                         class="btn btn-warning btn_edit" title="Sửa"><i

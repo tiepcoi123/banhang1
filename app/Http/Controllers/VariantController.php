@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{Variant};
+use App\Models\{Variant,Dish};
 
 class VariantController extends Controller
 {
-    public function list( Variant $variant , Dish $dish)
+    public function list(Dish $dish)
     {
-        $dish = Dish::all();
-        $variant = Variant::latest()->paginate(2);
-        return view('variant.list', compact('variant'));
+        
+        $variant = Variant::all();
+        return view('variant.list', compact('dish','variant'));
     }
 
     public function create(Variant $variant)

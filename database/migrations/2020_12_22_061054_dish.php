@@ -14,7 +14,7 @@ class Dish extends Migration
     public function up()
     {
         Schema::create('dish', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('name_dish');
             $table->string('price');
             $table->timestamps();

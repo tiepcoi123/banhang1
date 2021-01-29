@@ -14,7 +14,7 @@ class Chef extends Migration
     public function up()
     {
         Schema::create('chef', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('name');
             $table->date('birth');
             $table->string('phone');

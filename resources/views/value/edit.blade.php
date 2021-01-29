@@ -38,7 +38,7 @@
                                 @include('partials.errors')
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="exampleInputPassword1">Tên món</label>
+                                        <label for="exampleInputPassword1">Tên giá trị</label>
                                         <input type="text" name="name" class="form-control" value="{{ $value->name}}" id="exampleInputPassword1"
                                             placeholder="Tên món">
                                     </div>
@@ -47,7 +47,7 @@
                                         <label for="exampleFormControlSelect1"> Thuộc tính </label>
                                         <select class="form-control" name="attribute_id" id="exampleFormControlSelect1">
                                             @foreach ($attribute as $item)
-                                                <option value="{{ $item->id }}" {{ $item->id == $value->attribute_id ? 'selected' : '' }}>{{ $item->name }}</option>
+                                                <option value ="{{ $item->id }}" {{ $item->id == $value->attribute_id ? 'selected' : '' }}>{{ $item->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>

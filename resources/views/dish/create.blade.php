@@ -53,13 +53,29 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1">Danh mục chọn </label>
-                                        <select class="form-control multi_category" name="category_id[]" multiple="multiple">
-                                            {{-- <option value="">-- Chọn danh mục --</option> --}}
+                                        <select class="form-control multi_category" name="category_id[]"
+                                            multiple="multiple">
+                                            {{-- <option value="">-- Chọn danh mục --</option>
+                                            --}}
                                             @foreach ($category as $item)
                                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
+
+                                    @foreach ($attribute as $attr)
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect1">Size </label>
+                                        @foreach ($attr->value as $item)
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="value_id[{{ $attr->id }}][]" value="{{ $item->id }}" >
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                {{ $item->name }}
+                                            </label>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                    @endforeach
                                 </div>
                                 <!-- /.card-body -->
                                 <div class="card-footer">
@@ -82,11 +98,12 @@
         <!-- /.content -->
     </div>
     <script>
-        $(document).ready(function(){
+        $(document).ready(function() {
             $('.multi_category').select2({
                 minimumResultsForSearch: -1,
                 placeholder: "Chọn danh mục",
             });
         })
+
     </script>
 @endsection

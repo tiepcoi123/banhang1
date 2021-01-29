@@ -11,7 +11,7 @@ class ValueController extends Controller
 {
     public function list(Value $value)
     {
-        $value = Value::latest()->paginate(2);
+        $value = Value::paginate(5);
         return view('value.list', compact('value'));
     }
 
@@ -50,7 +50,8 @@ class ValueController extends Controller
 
     public function edit(Value $value)
     {
-        return view('value.edit', compact('value'));
+        $attribute = Attribute::all();
+        return view('value.edit', compact('value','attribute'));
     }
 
     public function update(Value $value, Request $request)
