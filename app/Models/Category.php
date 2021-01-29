@@ -14,7 +14,8 @@ class Category extends Model
     public $timestamp = false;
 
     protected $fillable =[
-        'name'
+        'name',
+        'parent_id',
     ];
 
     public function dish()

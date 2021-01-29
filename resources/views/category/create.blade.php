@@ -54,11 +54,24 @@
                                 @endif
                                 @csrf
                                 <div class="card-body">
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Đầu bếp nấu </label>
+                                    <select class="form-control" name="parent_id" id="exampleInputEmail1 parent_cate">
+                                        <option value="0">-- Chọn danh mục cha --</option>
+                                        @php
+                                            getCategory($categoryData, 0, '', true)
+                                        @endphp
+                                    </select>
+                                </div>
+                                </div>
+
+                                <div class="card-body">
                                     <div class="form-group">
                                         <label for="name">Tên danh mục</label>
                                         <input type="text" name="name" class="form-control" id="exampleInputEmail1">
                                     </div>
                                 </div>
+
                                 <!-- /.card-body -->
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -79,4 +92,9 @@
         </section>
         <!-- /.content -->
     </div>
+    <script>
+        $(document).ready(function(){
+            $('#parent_cate').select2();
+        })
+    </script>
 @endsection

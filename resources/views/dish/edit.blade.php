@@ -62,8 +62,8 @@
                                         <label for="exampleFormControlSelect1">Danh mục chọn </label>
                                         <select class="form-control multi_category" name="category_id[]" multiple="multiple">
                                             {{-- <option value="">-- Chọn danh mục --</option> --}}
-                                            @foreach ($dish->category as $value)
                                             @foreach ($category as $item)
+                                            @foreach ($dish->category as $value)
                                                 <option value="{{ $item->id }}" {{ $value->id == $item->id ? 'selected' : ''}} >{{ $item->name }}</option>
                                             @endforeach
                                             @endforeach

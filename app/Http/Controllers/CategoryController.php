@@ -11,7 +11,8 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $getData = Category::latest()->paginate(2);
+        // $getData = Category::latest()->paginate(5);
+        $getData = Category::all();
         return view('category.list', compact('getData'));
     }
 
@@ -23,6 +24,7 @@ class CategoryController extends Controller
     }
 
     public function store(Request $request )
+    
     {
         $validator= Validator::make($request->all(),
         [
@@ -39,7 +41,8 @@ class CategoryController extends Controller
         }
         
         $categoryData = Category::create([
-            'name' => $request->name
+            'name' => $request->name,
+            'parent_id' => $request->parent_id,
         ]);
 
         return redirect()->route('list_category');
