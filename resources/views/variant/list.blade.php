@@ -80,14 +80,8 @@
                                                 <td>{{ $item->created_at }}</td>
                                                 <td>
                                                     <a
-                                                        href="{{ route('update_variant', ['variant' => $item]) }}"
-                                                        class="btn btn-warning btn_edit">Sửa</a>
-                                                    <form action="{{ route('delete_variant', ['variant' => $dish]) }}"
-                                                        method="post">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger">Xóa</button>
-                                                    </form>
+                                                        href="{{ route('edit_variant', ['variant' => $item]) }}"
+                                                        class="btn btn-warning btn_edit"><i class="far fa-edit"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -106,8 +100,8 @@
 @endsection
 <style>
     .btn_edit {
-        float: left;
-        margin-right: 10px;
+        align-self: auto;
+        
     }
 
 </style>

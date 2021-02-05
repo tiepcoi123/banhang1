@@ -9,5 +9,10 @@ class Variant_value extends Model
 {
     use HasFactory;
 
-    protected $table = 'Variant_value';
+    protected $table = 'variant_value';
+
+    public function value()
+    {
+        return $this->belongstoMany('App\Models\Value','id','dish_id');
+    }
 }

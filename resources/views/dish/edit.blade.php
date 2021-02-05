@@ -61,14 +61,31 @@
                                      <div class="form-group">
                                         <label for="exampleFormControlSelect1">Danh mục chọn </label>
                                         <select class="form-control multi_category" name="category_id[]" multiple="multiple">
-                                            {{-- <option value="">-- Chọn danh mục --</option> --}}
                                             @foreach ($category as $item)
-                                            @foreach ($dish->category as $value)
-                                                <option value="{{ $item->id }}" {{ $value->id == $item->id ? 'selected' : ''}} >{{ $item->name }}</option>
+                                            @foreach ($dish->category as $val)
+                                            
+                                            <option value="{{ $item->id }}" {{ $val->id == $item->id ? 'selected' : ''}} >{{ $item->name }}</option>
                                             @endforeach
                                             @endforeach
                                         </select>
                                     </div>
+                                    
+                                    {{-- @dd($dish->value); --}}
+                                    @foreach ($attribute as $attr)
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect1">Size </label>
+                                        @foreach ($attr->value as $item)
+                                        <div class="form-check">
+                                            <input class="form-check-input"  type="checkbox" @foreach ($dish->value as $val) {{ $val->id == $item->id ? 'checked' : '' }}  @endforeach  name="value_id[]" value="{{ $item->id }}" >
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                {{ $item->name }}
+                                            </label>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                    @endforeach
+
+                                    
                                 </div>
                                 <!-- /.card-body -->
                                 <div class="card-footer">
@@ -94,6 +111,11 @@
         $(document).ready(function(){
             $('.multi_category').select2({
                 placeholder: "Chọn danh mục",
+            });
+        })
+        $(document).ready(function(){
+            $('.multi_value').select2({
+                placeholder: "Chọn giá trị",
             });
         })
       </script>

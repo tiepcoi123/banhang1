@@ -9,7 +9,7 @@ class MenuDishController extends Controller
 {
      public function list_menu()
     {
-        $getData = Dish::latest()->paginate(2);
+        $getData = Dish::latest()->paginate(10);
 
         $category = Category::all();
 
@@ -56,7 +56,16 @@ class MenuDishController extends Controller
 
         $insertDish->category()->attach($request->category_id);
 
+        $value_array = [];
+        foreach ($request->value_id as $value) {
+            foreach ($value as $item) {
+                $value_array[] = $item;
+            }
+        }
+        $insertDish->value()->attach($value_array);
+
         $variants = get_Combination($request->value_id);
+
         foreach ($variants as $variant) {
             $var = Variant::create([
                 'dish_id' => $insertDish->id
@@ -80,9 +89,13 @@ class MenuDishController extends Controller
      */
     public function edit(Dish $dish)
     {
+        // dd($dish->value);
+        $value = Value::all();
+        $variant = Variant::all();
+        $attribute = Attribute::all();
         $chef = Chef::all();
         $category = Category::all();
-        return view('dish.edit',compact('dish','chef','category'));
+        return view('dish.edit',compact('dish','chef','category','attribute','variant'));
     }
 
     /**
@@ -100,6 +113,7 @@ class MenuDishController extends Controller
             'price'         => 'required',
             'chef_id'       => 'required',
             'category_id'   => 'required',
+            'value_id'      => 'required'
         ],
         [
             'name_dish.required'    => 'Tên món đâu',
@@ -107,6 +121,7 @@ class MenuDishController extends Controller
             'price.required'        =>  'Bao tiền' ,
             'chef_id.required'      =>  'Ai nấu thế' ,
             'category_id.required'  =>  'Phân loại' ,
+            'value_id.required'     =>  'Giá trị' ,
         ]);
 
         if($validator->fails()){
@@ -118,7 +133,25 @@ class MenuDishController extends Controller
             'price'     => $request->price,
             'chef_id'   => $request->chef_id
             ]);
-            $dish->category()->sync($request->category_id);
+        $dish->category()->sync($request->category_id);
+        $dish->value()->sync($request->value_id);
+
+        // $variants = get_Combination2($request->value_id);
+        // foreach ($variants as $variant) {
+        //     if (check_variant($dish, $variant)) {
+        //         $var = Variant::create([
+        //             'dish_id' => $dish->id
+        //         ]);
+        //         $var->value()->attach($variant);
+        //     }
+        // }
+
+        // foreach ($variants as $variant) {
+        //     $var = Variant::create([
+        //         'dish_id' => $dish->id
+        //     ]);
+        //     $var->value()->attach($variant);
+        // }
 
         Session::flash('success', 'Chỉnh sửa món thành công');
 

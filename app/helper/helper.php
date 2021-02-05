@@ -102,3 +102,32 @@ function get_Combination($array)
     }
     return $result;
 }
+
+function get_Combination2($array)
+{
+    $result = array(array());
+    foreach ($array as $property => $property_values) {
+        $tmp = array();
+        foreach ($result as $result_item) {
+            foreach ($property_values as $property_value) {
+                $tmp[] = array_merge($result_item, array($property => $property_value));
+            }
+        }
+        $result = $tmp;
+    }
+    return $result;
+}
+
+function check_variant($dish, $array)
+{
+    foreach ($dish->variant as $row) {
+        $mang = array();
+        foreach ($row->value as $val) {
+            $mang[] = $val->id;
+            if (array_diff($mang, $array) == NULL) {
+                return false;
+            }
+        }
+    }
+    return true;
+}

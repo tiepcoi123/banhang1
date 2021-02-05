@@ -102,9 +102,17 @@ Route::group([
         Route::post('/store', 'VariantController@store')->name('store_variant');
         Route::get('/edit/{variant}', 'VariantController@edit')->name('edit_variant');
         Route::put('/update/{variant}', 'VariantController@update')->name('update_variant');
-        Route::delete('/delete/{variant}', 'VariantController@delete')->name('delete_variant');
     });
 
+    Route::group([
+        'prefix' => 'staff'
+    ], function () {
+        Route::get('/list','StaffController@list')->name('list_staff');
+        Route::get('/create', 'StaffController@create')->name('create_staff');
+        Route::post('/store', 'StaffController@store')->name('store_staff');
+        Route::get('/edit/{staff}', 'StaffController@edit')->name('edit_staff');
+        Route::put('/update/{staff}', 'StaffController@update')->name('update_staff');
+    });
 
     Route::group([
         'prefix' => 'timekepping'

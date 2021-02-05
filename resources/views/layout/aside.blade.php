@@ -47,6 +47,8 @@
                         </p>
                     </a>
                 </li>
+
+                {{-- Món ăn --}}
                 <li class="nav-item {{ $route == 'list_dish' || $route == 'create_dish' ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-utensils"></i>
@@ -59,20 +61,21 @@
                         <li class="nav-item">
                             <a href="{{ route('list_dish') }}"
                                 class="nav-link {{ $route == 'list_dish' ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fab fa-app-store nav-icon"></i>
                                 <p>Danh sách món ăn</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('create_dish') }}"
                                 class="nav-link {{ $route == 'create_dish' ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fab fa-app-store nav-icon"></i>
                                 <p>Tạo món ăn</p>
                             </a>
                         </li>
                     </ul>
                 </li>
 
+                {{-- Đầu bếp --}}
                 <li class="nav-item {{ $route == 'list_chef' || $route == 'create_chef' ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
@@ -85,22 +88,22 @@
                         <li class="nav-item">
                             <a href="{{ route('list_chef') }}"
                                 class="nav-link {{ $route == 'list_chef' ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fab fa-app-store nav-icon"></i>
                                 <p>Danh sách đầu bếp</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('create_chef') }}"
                                 class="nav-link {{ $route == 'create_chef' ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fab fa-app-store nav-icon"></i>
                                 <p>Thêm mới đầu bếp</p>
                             </a>
                         </li>
                     </ul>
                 </li>
 
-                <li
-                    class="nav-item {{ $route == 'list_promotion' || $route == 'create_promotion' ? 'menu-open' : '' }}">
+                {{-- Khuyến mại --}}
+                <li class="nav-item {{ $route == 'list_promotion' || $route == 'create_promotion' ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-money-bill-alt"></i>
                         <p>
@@ -112,46 +115,21 @@
                         <li class="nav-item">
                             <a href="{{ route('list_promotion') }}"
                                 class="nav-link {{ $route == 'list_promotion' ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fab fa-app-store nav-icon"></i>
                                 <p>Danh sách khuyển mại</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('create_promotion') }}"
                                 class="nav-link {{ $route == 'create_promotion' ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fab fa-app-store nav-icon"></i>
                                 <p>Thêm mới khuyến mại</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-                {{-- <li
-                    class="nav-item {{ $route == 'list_timekeep' || $route == 'edit_timekeep' ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-child"></i>
-                        <p>
-                            Chấm công
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('list_timekeep') }}"
-                                class="nav-link {{ $route == 'list_timekeep' ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Danh sách chấm công</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('create_promotion') }}"
-                                class="nav-link {{ $route == 'edit_timekeep' ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>sửa bảng chấm công</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li> --}}
 
+                {{-- Danh mục Category --}}
                 <li class="nav-item {{ $route == 'list_category' || $route == 'create_category' ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-caret-square-down"></i>
@@ -164,20 +142,21 @@
                         <li class="nav-item">
                             <a href="{{ route('list_category') }}"
                                 class="nav-link {{ $route == 'list_category' ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fab fa-app-store nav-icon"></i>
                                 <p>Danh mục</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('create_category') }}"
                                 class="nav-link {{ $route == 'create_category' ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fab fa-app-store nav-icon"></i>
                                 <p>Tạo danh mục</p>
                             </a>
                         </li>
                     </ul>
                 </li>
 
+                {{-- Chấm công --}}
                 <li class="nav-item ">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-stopwatch"></i>
@@ -189,22 +168,21 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('list_timekeep') }}" class="nav-link ">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fab fa-app-store nav-icon"></i>
                                 <p>Danh mục</p>
                             </a>
                         </li>
                         {{-- <li class="nav-item">
                             <a href="{{ route('create_timekeep') }}" class="nav-link ">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fab fa-app-store nav-icon"></i>
                                 <p>Tạo danh mục</p>
                             </a>
                         </li> --}}
                     </ul>
                 </li>
 
-
-                <li
-                    class="nav-item {{ $route == 'list_attribute' || $route == 'create_attribute' ? 'menu-open' : '' }}">
+                {{-- Attribute Dish --}}
+                <li class="nav-item {{ $route == 'list_attribute' || $route == 'create_attribute' ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-sort-numeric-down"></i>
                         <p>
@@ -216,20 +194,21 @@
                         <li class="nav-item">
                             <a href="{{ route('list_attribute') }}"
                                 class="nav-link {{ $route == 'list_attribute' ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fab fa-app-store nav-icon"></i>
                                 <p>List</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('create_attribute') }}"
                                 class="nav-link {{ $route == 'create_attribute' ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fab fa-app-store nav-icon"></i>
                                 <p>Tạo thuộc tính</p>
                             </a>
                         </li>
                     </ul>
                 </li>
 
+                {{-- Value Dish --}}
                 <li class="nav-item {{ $route == 'list_value' || $route == 'create_value' ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-utensils"></i>
@@ -242,15 +221,42 @@
                         <li class="nav-item">
                             <a href="{{ route('list_value') }}"
                                 class="nav-link {{ $route == 'list_value' ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fab fa-app-store nav-icon"></i>
                                 <p>List value</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('create_value') }}"
                                 class="nav-link {{ $route == 'create_value' ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fab fa-app-store nav-icon"></i>
                                 <p>Tạo giá trị</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                {{-- Nhân viên --}}
+                <li class="nav-item {{ $route == 'list_staff' || $route == 'create_staff' ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon far fa-user"></i>
+                        <p>
+                            Nhân viên
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('list_staff') }}"
+                                class="nav-link {{ $route == 'list_staff' ? 'active' : '' }}">
+                                <i class="fab fa-app-store nav-icon"></i>
+                                <p>Danh sách nhân viên</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('create_staff') }}"
+                                class="nav-link {{ $route == 'create_staff' ? 'active' : '' }}">
+                                <i class="fab fa-app-store nav-icon"></i>
+                                <p>Thêm mới nhân viên</p>
                             </a>
                         </li>
                     </ul>

@@ -16,7 +16,7 @@ class Staff extends Migration
         Schema::create('staff', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->integer('level');
+            $table->integer('level')->default(1);
             $table->date('birth');
             $table->date('start_job');
             $table->string('phone');

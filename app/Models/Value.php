@@ -16,14 +16,18 @@ class Value extends Model
         'name',
         'attribute_id',
     ];
-
+    
+    public function dish()
+    {
+        return $this->belongsToMany('App\Models\Dish', 'value_dish', 'value_id', 'dish_id');
+    }
     public function attribute()
     {
         return $this->belongsTo('App\Models\Attribute', 'attribute_id', 'id');
     }
 
-    public function dish()
+    public function variant()
     {
-        return $this->belongsToMany('App\Models\Dish', 'value_dish', 'value_id', 'dish_id');
+        return $this->belongsToMany('App\Models\Variant', 'variant_value',  'variant_id','value_id');
     }
 }
