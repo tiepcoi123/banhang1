@@ -133,7 +133,7 @@ Route::post('register','RegisterController@postRegister')->name('post_register')
 
 
 Route::get('/', function () {
-    return view('wecome');
+    return view('index');
 });
 
 
