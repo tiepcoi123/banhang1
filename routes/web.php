@@ -112,6 +112,18 @@ Route::group([
         Route::post('/store', 'StaffController@store')->name('store_staff');
         Route::get('/edit/{staff}', 'StaffController@edit')->name('edit_staff');
         Route::put('/update/{staff}', 'StaffController@update')->name('update_staff');
+        
+    });
+
+    Route::group([
+        'prefix' => 'provided'
+    ], function () {
+        Route::get('/list','ProvidedController@list')->name('list_provided');
+        Route::get('/create', 'ProvidedController@create')->name('create_provided');
+        Route::post('/store', 'ProvidedController@store')->name('store_provided');
+        Route::get('/edit/{provided}', 'ProvidedController@edit')->name('edit_provided');
+        Route::put('/update/{provided}', 'ProvidedController@update')->name('update_provided');
+        Route::delete('/delete/{provided}', 'ProvidedController@delete')->name('delete_provided');
     });
 
     Route::group([

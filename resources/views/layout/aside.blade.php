@@ -262,6 +262,33 @@
                     </ul>
                 </li>
 
+                {{-- Chuỗi cung ứng --}}
+                <li class="nav-item {{ $route == 'list_provided' || $route == 'create_provided' ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-ambulance"></i>
+                        <p>
+                            Nhà cung ứng
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('list_provided') }}"
+                                class="nav-link {{ $route == 'list_provided' ? 'active' : '' }}">
+                                <i class="fab fa-app-store nav-icon"></i>
+                                <p>Danh sách nhà cung ứng</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('create_provided') }}"
+                                class="nav-link {{ $route == 'create_provided' ? 'active' : '' }}">
+                                <i class="fab fa-app-store nav-icon"></i>
+                                <p>Thêm nhà cung ứng</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

@@ -14,6 +14,19 @@ if (!function_exists('get_name_chef_by_id')) {
 
 }
 
+if (!function_exists('get_name_category_by_id')) {
+   function get_name_category_by_id($id_category)
+   {
+      $data = Category::where('id', $id_category)->first();
+
+      if($data){
+        return $data['name'];
+     }
+      return null;
+   }
+
+}
+
 
 if (!function_exists('get_name_dish_by_id')) {
    function get_name_dish_by_id($id_dish)

@@ -29,7 +29,7 @@ class StaffController extends Controller
                 'birth'     => 'required',
                 'start_job' => 'required',
                 'phone'     => 'required',
-                'email'     => 'required|unique:staff,email',
+                'email'     => 'required',
             ],
             [
                 'name.required'         => 'Tên nhân viên bro',
@@ -37,7 +37,6 @@ class StaffController extends Controller
                 'start_job.required'    => 'Ngày bắt dầu làm việc của nhân viên bro',
                 'phone.required'        => 'SĐT nhân viên bro',
                 'email.required'        => 'Email của nhân viên bro',
-                'email.unique'          => 'Email của nhân viên trùng rồi bro',
             ]
         );
 
@@ -63,7 +62,7 @@ class StaffController extends Controller
         return view('staff.edit', compact('staff'));
     }
 
-    public function update(Type $var = null)
+    public function update(Request $request, Staff $staff)
     {
         $validator = Validator::make($request->all(),
             [
@@ -71,10 +70,9 @@ class StaffController extends Controller
                 'birth'      => 'required',
                 'start_job' => 'required',
                 'phone'     => 'required',
-                'email'     => 'required|unique:staff,email ',
+                'email'     => 'required|unique:staff,email',
                 
             ],
-
             [
                 'name.required'         => 'Tên nhân viên bro',
                 'birth.required'         => 'Ngày sinh nhân viên bro',
@@ -84,10 +82,16 @@ class StaffController extends Controller
                 'email.unique'          => 'Email của nhân viên trùng rồi bro',
             ]
         );
-
         if($validator->fails()){
             return redirect()->back()->withErrors($validator->errors())->withInput();
         }
+        $staff->update([
+            'name'      => $request->name,
+            'birth'     => $request->birth,
+            'start_job' => $request->start_job,
+            'phone'     => $request->phone,
+            'email'     => $request->email,
+        ]);
 
         Session::flash('success', 'Chỉnh sửa nhân viên thành công');
         return redirect()->route('list_staff');

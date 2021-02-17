@@ -136,22 +136,16 @@ class MenuDishController extends Controller
         $dish->category()->sync($request->category_id);
         $dish->value()->sync($request->value_id);
 
-        // $variants = get_Combination2($request->value_id);
-        // foreach ($variants as $variant) {
-        //     if (check_variant($dish, $variant)) {
-        //         $var = Variant::create([
-        //             'dish_id' => $dish->id
-        //         ]);
-        //         $var->value()->attach($variant);
-        //     }
-        // }
+        $variants = get_Combination2([$request->value_id]);
 
-        // foreach ($variants as $variant) {
-        //     $var = Variant::create([
-        //         'dish_id' => $dish->id
-        //     ]);
-        //     $var->value()->attach($variant);
-        // }
+        foreach ($variants as $variant) {
+            if (check_variant($dish, $variant)) {
+                $var = Variant::create([
+                    'dish_id' => $dish->id
+                ]);
+                $var->value()->sync($variant);
+            }
+        }
 
         Session::flash('success', 'Chỉnh sửa món thành công');
 

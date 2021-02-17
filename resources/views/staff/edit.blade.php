@@ -37,9 +37,9 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="exampleInputPassword1">Email</label>
-                                        <input type="integer" name="email" class="form-control"
-                                            value="{{ $staff->email }}" id="exampleInputPassword1" placeholder="Email">
+                                        <label for="exampleInputPassword1">email</label>
+                                        <input type="email" name="email" class="form-control" value="{{ $staff->email }}"
+                                         id="exampleInputPassword1" placeholder="email">
                                     </div>
 
                                     <div class="row">
@@ -65,8 +65,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="name">Ngày sinh nhân viên </label>
-                                                <input type="date" class="form-control" name="birth"  value="{{ $staff->birth }}"
-                                                    placeholder="Nhập phần trăm khuyến mại">
+                                                <input type="date" class="form-control" name="birth"  value="{{ $staff->birth }}">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -76,19 +75,12 @@
                                             </div>
                                         </div>
                                     </div>
-
-                                   
-
-
                                 </div>
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                             </form>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-
                     </div>
                 </div>
             </div>

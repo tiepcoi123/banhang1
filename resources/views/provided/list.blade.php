@@ -1,5 +1,5 @@
 @extends('layout.main')
-@section('title', 'Danh sách nhân viên ')
+@section('title', 'Danh sách chuỗi cung ứng ')
 @section('content')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -7,12 +7,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Danh sách nhân viên </h1>
+                        <h1>Danh sách chuỗi cung ứng </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                            <li class="breadcrumb-item active">Danh sách nhân viên </li>
+                            <li class="breadcrumb-item active">Danh sách chuỗi cung ứng </li>
                         </ol>
                     </div>
                 </div>
@@ -26,15 +26,8 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            @if (Session::has('success'))
-                                <div class="alert alert-success alert-dismissible">
-                                    <strong>{{ Session::get('success') }}</strong>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                        <span class="sr-only">Close</span>
-                                    </button>
-                                </div>
-                            @endif
+                            @include('partials.errors')
+                            @include('partials.success')
                             <div class="card-header">
                                 <div class="card-tools">
                                     <div class="input-group input-group-sm" style="width: 150px;">
@@ -55,31 +48,35 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Tên nhân viên</th>
-                                            <th>Email</th>
-                                            <th>Phone</th>
-                                            <th>Ngày sinh</th>
-                                            <th>Ngày đầu làm việc</th>
+                                            <th>Tên chuỗi cung ứng</th>
+                                            <th>Tên sản phẩm cung ứng</th>
+                                            <th>Số lượng sản phẩm cung ứng</th>
+                                            <th>Ngày nhập hàng</th>
+                                            <th>Ngày hàng hết hạn sử dụng</th>
+                                            <th>Tiền nhập hàng</th>
+                                            <th>Ghi chú</th>
                                             <th>Ngày tạo</th>
                                             <th>Hành động</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($staff as $item)
+                                        @foreach ($provided as $item)
                                             <tr>
                                                 <td>{{ $item->id }}</td>
                                                 <td>{{ $item->name }}</td>
-                                                <td>{{ $item->email }}</td>
-                                                <td>{{ $item->phone }}</td>
-                                                <td>{{ $item->birth }}</td>
-                                                <td>{{ $item->start_job }}</td>
+                                                <td>{{ $item->category_id != null ? get_name_category_by_id($item->category_id) : null }}
+                                                <td>{{ $item->amount }}</td>
+                                                <td>{{ $item->time_start }}</td>
+                                                <td>{{ $item->time_end }}</td>
+                                                <td>{{ $item->price }}</td>
+                                                <td>{{ $item->note }}</td>
                                                 <td>{{ $item->created_at }}</td>
                                                 <td>
-                                                    <a href="{{ route('edit_staff', ['staff' => $item]) }}"
+                                                    <a href="{{ route('edit_provided', ['provided' => $item]) }}"
                                                         class="btn btn-warning btn_edit" title="Sửa"><i
                                                             class="fas fa-edit"></i>
                                                     </a>
-                                                    <button type="submit" class="btn btn-danger btn-delete-staff"
+                                                    <button type="submit" class="btn btn-danger btn-delete-provided"
                                                         data-id="{{ $item->id }}" title="Xóa"><i class="fas fa-trash"></i>
                                                     </button>
                                                 </td>
@@ -87,7 +84,7 @@
                                     </tbody>
                                 </table>
                                 <div class="card-footer clearfix">
-                                    {{ $staff->links('layout.pagination') }}
+                                    {{ $provided->links('layout.pagination') }}
                                 </div>
                             </div>
                         </div>
@@ -98,7 +95,7 @@
     </div>
     <script>
         $(document).ready(function() {
-            $('.btn-delete-staff').click(function() {
+            $('.btn-delete-provided').click(function() {
                 var id = $(this).attr('data-id');
 
                 Swal.fire({
@@ -112,7 +109,7 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
-                            url: "/staff/delete/" + id,
+                            url: "/provided/delete/" + id,
                             method: "POST",
                             data: {
                                 _token: "{{ csrf_token() }}",
