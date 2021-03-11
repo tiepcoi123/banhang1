@@ -1153,6 +1153,7 @@
     <script src="{{asset('frontend/js/waypoints.min.js')}}"></script>
     <!-- Main js file that contents all jQuery plugins activation. -->
     <script src="{{asset('frontend/js/main.js')}}"></script>
+    
 
 </body>
 

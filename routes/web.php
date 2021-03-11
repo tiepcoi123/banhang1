@@ -31,9 +31,21 @@ Route::group([
         Route::get('/create','ChefController@create')->name('create_chef');
         Route::post('/store','ChefController@store')->name('store_chef');
         Route::get('/list','ChefController@list')->name('list_chef');
-        Route::get('/edit/{chef}','ChefController@edit')->name('edit_chef');
-        Route::put('/update/{chef}','ChefController@update')->name('update_chef');
+        Route::get('/edit/{id}','ChefController@edit')->name('edit_chef');
+        Route::put('/update/{id}','ChefController@update')->name('update_chef');
         Route::delete('/delete/{chef}','ChefController@delete')->name('delete_chef');
+    });
+
+    //Route User
+    Route::group([
+        'prefix' => 'User'
+    ], function () {
+        Route::get('/create','UserController@create')->name('create_user');
+        Route::post('/store','UserController@store')->name('store_user');
+        Route::get('/list','UserController@list')->name('list_user');
+        Route::get('/edit/{User}','UserController@edit')->name('edit_user');
+        Route::put('/update/{User}','UserController@update')->name('update_user');
+        Route::delete('/delete/{User}','UserController@delete')->name('delete_user');
     });
 
     // Route dish
@@ -43,9 +55,9 @@ Route::group([
     function () {
         Route::get('/menu','MenuDishController@list_menu')->name('list_dish');
         Route::get('/create','MenuDishController@create')->name('create_dish');
-        Route::get('/edit/{dish}','MenuDishController@edit')->name('edit_dish');
+        Route::get('/edit/{id}','MenuDishController@edit')->name('edit_dish');
         Route::post('/store','MenuDishController@store')->name('store_dish');
-        Route::put('/update/{dish}','MenuDishController@update')->name('update_dish');
+        Route::put('/update/{id}','MenuDishController@update')->name('update_dish');
         Route::delete('/delete/{id}','MenuDishController@delete')->name('delete_dish');
     });
 
@@ -124,6 +136,17 @@ Route::group([
         Route::get('/edit/{provided}', 'ProvidedController@edit')->name('edit_provided');
         Route::put('/update/{provided}', 'ProvidedController@update')->name('update_provided');
         Route::delete('/delete/{provided}', 'ProvidedController@delete')->name('delete_provided');
+    });
+
+    Route::group([
+        'prefix' => 'customers'
+    ], function () {
+        Route::get('/list','CustomersController@list')->name('list_customers');
+        Route::get('/create', 'CustomersController@create')->name('create_customers');
+        Route::post('/store', 'CustomersController@store')->name('store_customers');
+        Route::get('/edit/{customers}', 'CustomersController@edit')->name('edit_customers');
+        Route::put('/update/{customers}', 'CustomersController@update')->name('update_customers');
+        Route::delete('/delete/{customers}', 'CustomersController@delete')->name('delete_customers');
     });
 
     Route::group([

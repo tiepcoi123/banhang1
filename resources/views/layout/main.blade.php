@@ -29,11 +29,15 @@
   <link rel="stylesheet" href="{{asset('plugins/summernote/summernote-bs4.min.css') }}">
   <!-- Select 2 -->
   <link rel="stylesheet" href="{{asset('backend/css/select2.min.css')}}" type="text/css"/>
+   <!-- fullCalendar -->
+   <link rel="stylesheet" href="{{asset('plugins/fullcalendar/main.css')}}">
   <!-- jQuery -->
+  <!-- Toastr CSS  -->
+  <link rel="stylesheet" href="{{asset('dist/css/toastr.min.css')}}">
+  
   <script src="{{asset('plugins/jquery/jquery.min.js') }}"></script>
   <!-- jQuery UI 1.11.4 -->
   <script src="{{asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
-
   <style>
     .select2-container--default .select2-selection--multiple .select2-selection__choice {
       background-color: #007bff !important;
@@ -71,7 +75,6 @@
 <!-- ChartJS -->
 <script src="{{asset('plugins/chart.js/Chart.min.js') }}"></script>
 <!-- Sparkline -->
-<script src="{{asset('plugins/sparklines/sparkline.js') }}"></script>
 <!-- JQVMap -->
 <script src="{{asset('plugins/jqvmap/jquery.vmap.min.js') }}"></script>
 <script src="{{asset('plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
@@ -96,5 +99,10 @@
 <script src="{{asset('backend/js/select2.min.js') }}"></script>
 <!-- SweetAlert2 -->
 <script src="{{asset('plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+<!-- fullCalendar 2.2.5 -->
+<script src="{{asset('plugins/moment/moment.min.js') }}"></script>
+<script src="{{asset('plugins/fullcalendar/main.js') }}"></script>
+<!-- Toastr JS -->
+<script src="{{asset('dist/js/toastr.min.js')}}"></script>
 </body>
 </html>

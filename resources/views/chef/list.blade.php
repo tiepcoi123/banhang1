@@ -72,7 +72,7 @@
                                                 <td>{{ date('d-m-Y', strtotime($item->birth)) }}</td>
                                                 <td>{{ $item->phone }}</td>
                                                 <td>
-                                                    <a href="{{ route('edit_chef', ['chef' => $item]) }}"
+                                                    <a href="{{ route('edit_chef', ['id' => $item->id]) }}"
                                                         class="btn btn-warning btn_edit" title="Sửa"><i style="color: #FFF" class="fas fa-edit"></i>
                                                     </a>
                                                     <button type="submit" class="btn btn-danger btn-delete-chef"

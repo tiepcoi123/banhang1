@@ -289,6 +289,32 @@
                     </ul>
                 </li>
 
+                <li class="nav-item {{ $route == 'list_customers' || $route == 'create_customers' ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-shopping-basket"></i>
+                        <p>
+                            Khách hàng
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('list_customers') }}"
+                                class="nav-link {{ $route == 'list_customers' ? 'active' : '' }}">
+                                <i class="fab fa-app-store nav-icon"></i>
+                                <p>Danh sách khách hàng</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('create_customers') }}"
+                                class="nav-link {{ $route == 'create_customers' ? 'active' : '' }}">
+                                <i class="fab fa-app-store nav-icon"></i>
+                                <p>Thêm khách hàng</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

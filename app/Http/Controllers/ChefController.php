@@ -59,8 +59,9 @@ class ChefController extends Controller
         return response()->json([], 204);
     }
 
-    public function edit(Chef $chef)
+    public function edit($id)
     {
+        $chef = Chef::find($id);
         return view('chef.edit',compact('chef'));
     }
 
@@ -72,8 +73,6 @@ class ChefController extends Controller
             'phone'=> $request->phone,
         ]);
 
-        Session::flash('success', 'Chỉnh sửa thành công');
-
-        return redirect()->route('list_chef');
+        return response()->json(['status' => 'success', 'message' => 'Cập nhật thành công'], 200);
     }
 }

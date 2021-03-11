@@ -118,6 +118,7 @@ function get_Combination($array)
 
 function get_Combination2($array)
 {
+   dd($array);
     $result = array(array());
     foreach ($array as $property => $property_values) {
         $tmp = array();

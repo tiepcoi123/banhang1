@@ -70,7 +70,7 @@ class StaffController extends Controller
                 'birth'      => 'required',
                 'start_job' => 'required',
                 'phone'     => 'required',
-                'email'     => 'required|unique:staff,email',
+                'email'     => 'required',
                 
             ],
             [
@@ -79,7 +79,6 @@ class StaffController extends Controller
                 'start_job.required'    => 'Ngày bắt dầu làm việc của nhân viên bro',
                 'phone.required'        => 'SĐT nhân viên bro',
                 'email.required'        => 'Email của nhân viên bro',
-                'email.unique'          => 'Email của nhân viên trùng rồi bro',
             ]
         );
         if($validator->fails()){

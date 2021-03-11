@@ -13,7 +13,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
                             <li class="breadcrumb-item active">Sửa đầu bếp </li>
                         </ol>
                     </div>
@@ -32,32 +32,33 @@
                             <!-- /.card-header -->
 
                             <!-- form start -->
-                            <form id="quickForm" action="{{ route('update_chef', ['chef' => $chef ]) }}" method="Post">
+                            <form id="quickForm" action="{{ route('update_chef', ['id' => $chef->id]) }}" method="Post">
                                 @method('put')
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Tên đầu bếp</label>
-                                        <input type="text" name="name" class="form-control" value="{{ $chef->name}}" id="exampleInputPassword1"
-                                            placeholder="Name">
+                                        <input type="text" name="name" class="form-control" value="{{ $chef->name }}"
+                                            id="name" placeholder="Name">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Ngày sinh</label>
-                                        <input type="date" name="birth" class="form-control" value="{{ $chef->birth }}" id="exampleInputPassword1"
-                                            placeholder="Date">
+                                        <input type="date" name="birth" class="form-control" value="{{ $chef->birth }}"
+                                            id="birth" placeholder="Date">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Số điện thoại</label>
-                                        <input type="text" name="phone" class="form-control" value="{{ $chef->phone }}" id="exampleInputPassword1"
-                                            placeholder="Phone">
+                                        <input type="text" name="phone" class="form-control" value="{{ $chef->phone }}"
+                                            id="phone" placeholder="Phone">
                                     </div>
 
                                 </div>
                                 <!-- /.card-body -->
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" data-id="{{ $chef->id }}"
+                                        class="btn btn-primary btn-edit-chef">Submit</button>
                                 </div>
                             </form>
                         </div>
@@ -75,4 +76,35 @@
         </section>
         <!-- /.content -->
     </div>
+    <script>
+        $(document).ready(function() {
+                    $('.btn-edit-chef').click(function(e) {
+                        e.preventDefault();
+                        var name = $('#name').val();
+                        var birth = $('#birth').val();
+                        var phone = $('#phone').val();
+
+                        var id = $(this).attr('data-id');
+
+                        $.ajax({
+                            url: "/chef/update/" + id,
+                            method: "POST",
+                            data: {
+                                name: name,
+                                price: birth,
+                                phone: phone,
+                                _token: "{{ csrf_token() }}",
+                                _method: "PUT"
+                            },
+                            success: function(response) {
+                                toastr.success('Cập nhật thành công')
+                             }//.then((result2) => {
+                            //     if (result2.value) {
+                            //         window.location.reload(); // hàm load lại trang của js
+                            //     }
+                            });
+                        })
+                    })
+
+    </script>
 @endsection

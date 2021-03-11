@@ -87,8 +87,9 @@ class MenuDishController extends Controller
      * @param Dish $dish
      * @return void
      */
-    public function edit(Dish $dish)
+    public function edit($id)
     {
+        $dish = Dish::find($id);
         // dd($dish->value);
         $value = Value::all();
         $variant = Variant::all();
@@ -105,8 +106,9 @@ class MenuDishController extends Controller
      * @param Dish $dish
      * @return void
      */
-    public function update(Request $request, Dish $dish){
-
+    public function update(Request $request, Dish $dish)
+    {
+        dd($request->all());
         $validator = \Validator::make($request->all(),
         [
             'name_dish'     => 'required',
@@ -128,15 +130,18 @@ class MenuDishController extends Controller
             return redirect()->back()->withErrors($validator->errors())->withInput();
         }
 
+        $aryCategory = json_decode($request->category_id, true);
+        $aryValue = json_decode($request->value_id, true);
+
         $dish->update([
             'name_dish' => $request->name_dish,
             'price'     => $request->price,
             'chef_id'   => $request->chef_id
             ]);
-        $dish->category()->sync($request->category_id);
-        $dish->value()->sync($request->value_id);
+        $dish->category()->sync($aryCategory);
+        $dish->value()->sync($aryValue);
 
-        $variants = get_Combination2([$request->value_id]);
+        $variants = get_Combination2([$aryValue]);
 
         foreach ($variants as $variant) {
             if (check_variant($dish, $variant)) {
@@ -146,10 +151,7 @@ class MenuDishController extends Controller
                 $var->value()->sync($variant);
             }
         }
-
-        Session::flash('success', 'Chỉnh sửa món thành công');
-
-        return redirect()->route('list_dish');
+        return response()->json(['status' => 'success', 'message' => 'Cập nhật thành công'], 200);
     }
 
     public function delete($id)

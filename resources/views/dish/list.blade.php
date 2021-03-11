@@ -80,7 +80,7 @@
                                                 <td>
                                                     <a href="{{ route('list_variant', ['dish' => $item]) }}" class="btn btn-primary"
                                                         title="Biến thể"><i class="fas fa-list"></i></a>
-                                                    <a href="{{ route('edit_dish', ['dish' => $item]) }}"
+                                                    <a href="{{ route('edit_dish', ['id' => $item->id]) }}"
                                                         class="btn btn-warning btn_edit" title="Sửa"><i
                                                             class="fas fa-edit"></i>
                                                     </a>
